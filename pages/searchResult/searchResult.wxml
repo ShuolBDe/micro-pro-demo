@@ -1,0 +1,5 @@
+<!--<import src="../../wxParse/wxParse.wxml"/> 
+<template is="wxParse" data="{{wxParseData}}"/>-->
+
+<import src="../qParser/qParser.wxml"/> 
+<template is="qParser" data="{{qParserData}}"/>

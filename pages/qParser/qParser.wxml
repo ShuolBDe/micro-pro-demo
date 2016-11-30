@@ -1,0 +1,162 @@
+<!--**
+ * author: 小王岩
+ * for: 作业帮题库自产数据
+ */-->
+
+<!-- 基础模版 -->
+<template name="qParserImg">
+    <image class="{{item.class}} qParser-{{item.name}}" data-src="{{item.attributes.src}}" src="{{item.attributes.src}}" mode="aspectFit" bindload="qParserImgLoad" bindtap="qParserImgTap" style="{{item.attributes.style}}"></image>
+</template>
+
+<template name="qParserTxt">
+    <text class="{{item.class}} qParser-{{item.name}}" style="{{item.attributes.style}}">{{item.data}}</text>
+</template>
+
+<!-- 入口模版 -->
+<template name="qParser">
+    <block wx:for="{{qParserData}}" wx:key="">
+        <template is="qParser0" data="{{item}}"/>
+    </block>
+</template>
+
+<template name="qParser0">
+    <block wx:if="{{item.type == 'tag'}}">
+        <!-- img类型 -->
+        <block wx:if="{{item.name == 'img'}}">
+            <template is="qParserImg" data="{{item}}"/>
+        </block>
+        <!-- 其他块级标签 -->
+        <block wx:elif="{{item.tagType == 'block'}}">
+            <view class="{{item.class}} qParser-{{item.name}}" style="{{item.attributes.style}}">
+                <block wx:for="{{item.children}}" wx:for-item="item" wx:key="">
+                    <template is="qParser1" data="{{item}}"/>
+                </block>
+            </view>
+        </block>
+        <!--内联标签-->
+        <text wx:else class="{{item.class}} qParser-{{item.name}} qParser-{{item.tagType}}" style="{{item.attributes.style}}">
+            <block  wx:for="{{item.children}}" wx:for-item="item" wx:key="">       
+                <template is="qParser1" data="{{item}}"/>                 
+            </block>
+        </text>
+    </block>
+    <block wx:elif="{{item.type == 'text'}}">
+        <text class="qParserTxt">{{item.data}}</text>
+    </block>
+</template>
+
+<template name="qParser1">
+    <block wx:if="{{item.type == 'tag'}}">
+        <!-- img类型 -->
+        <block wx:if="{{item.name == 'img'}}">
+            <template is="qParserImg" data="{{item}}"/>
+        </block>
+        <!-- 其他块级标签 -->
+        <block wx:elif="{{item.tagType == 'block'}}">
+            <view class="{{item.class}} qParser-{{item.name}}" style="{{item.attributes.style}}">
+                <block wx:for="{{item.children}}" wx:for-item="item" wx:key="">
+                    <template is="qParser2" data="{{item}}"/>
+                </block>
+            </view>
+        </block>
+        <!--内联标签-->
+        <text wx:else class="{{item.class}} qParser-{{item.name}} qParser-{{item.tagType}}" style="{{item.attributes.style}}">
+            <block  wx:for="{{item.children}}" wx:for-item="item" wx:key="">       
+                <template is="qParser2" data="{{item}}"/>                 
+            </block>
+        </text>
+    </block>
+    <block wx:elif="{{item.type == 'text'}}">
+        <text class="qParserTxt">{{item.data}}</text>
+    </block>
+</template>
+
+<template name="qParser2">
+    <block wx:if="{{item.type == 'tag'}}">
+        <!-- img类型 -->
+        <block wx:if="{{item.name == 'img'}}">
+            <template is="qParserImg" data="{{item}}"/>
+        </block>
+        <!-- 其他块级标签 -->
+        <block wx:elif="{{item.tagType == 'block'}}">
+            <view class="{{item.class}} qParser-{{item.name}}" style="{{item.attributes.style}}">
+                <block wx:for="{{item.children}}" wx:for-item="item" wx:key="">
+                    <template is="qParser2" data="{{item}}"/>
+                </block>
+            </view>
+        </block>
+        <!--内联标签-->
+        <text wx:else class="{{item.class}} qParser-{{item.name}} qParser-{{item.tagType}}" style="{{item.attributes.style}}">
+            <block  wx:for="{{item.children}}" wx:for-item="item" wx:key="">       
+                <template is="qParser3" data="{{item}}"/>                 
+            </block>
+        </text>
+    </block>
+    <block wx:elif="{{item.type == 'text'}}">
+        <text class="qParserTxt">{{item.data}}</text>
+    </block>
+</template>
+
+<template name="qParser3">
+    <block wx:if="{{item.type == 'tag'}}">
+        <!-- img类型 -->
+        <block wx:if="{{item.name == 'img'}}">
+            <template is="qParserImg" data="{{item}}"/>
+        </block>
+        <!-- 其他块级标签 -->
+        <block wx:elif="{{item.tagType == 'block'}}">
+            <view class="{{item.class}} qParser-{{item.name}}" style="{{item.attributes.style}}">
+                <block wx:for="{{item.children}}" wx:for-item="item" wx:key="">
+                    <template is="qParser2" data="{{item}}"/>
+                </block>
+            </view>
+        </block>
+        <!--内联标签-->
+        <text wx:else class="{{item.class}} qParser-{{item.name}} qParser-{{item.tagType}}" style="{{item.attributes.style}}">
+            <block  wx:for="{{item.children}}" wx:for-item="item" wx:key="">       
+                <template is="qParser4" data="{{item}}"/>                 
+            </block>
+        </text>
+    </block>
+    <block wx:elif="{{item.type == 'text'}}">
+        <text class="qParserTxt">{{item.data}}</text>
+    </block>
+</template>
+
+<template name="qParser4">
+    <block wx:if="{{item.type == 'tag'}}">
+        <!-- img类型 -->
+        <block wx:if="{{item.name == 'img'}}">
+            <template is="qParserImg" data="{{item}}"/>
+        </block>
+        <!-- 其他块级标签 -->
+        <block wx:elif="{{item.tagType == 'block'}}">
+            <view class="{{item.class}} qParser-{{item.name}}" style="{{item.attributes.style}}">
+                <block wx:for="{{item.children}}" wx:for-item="item" wx:key="">
+                    <template is="qParser2" data="{{item}}"/>
+                </block>
+            </view>
+        </block>
+        <!--内联标签-->
+        <text wx:else class="{{item.class}} qParser-{{item.name}} qParser-{{item.tagType}}" style="{{item.attributes.style}}">
+            <block  wx:for="{{item.children}}" wx:for-item="item" wx:key="">       
+                <template is="qParser5" data="{{item}}"/>                 
+            </block>
+        </text>
+    </block>
+    <block wx:elif="{{item.type == 'text'}}">
+        <text class="qParserTxt">{{item.data}}</text>
+    </block>
+</template>
+
+<template name="qParser5">
+    <block wx:if="{{item.type == 'tag'}}">
+        <!-- img类型 -->
+        <block wx:if="{{item.name == 'img'}}">
+            <template is="qParserImg" data="{{item}}"/>
+        </block>
+    </block>
+    <block wx:elif="{{item.type == 'text'}}">
+        <text class="qParserTxt">{{item.data}}</text>
+    </block>
+</template>
